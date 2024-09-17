@@ -6,6 +6,7 @@
   3) Utilizzo del componente
 */
 // 1) Importazione del componente
+import SingleItem from './components/SingleItem.vue'
 
 import axios from 'axios';
 
@@ -19,8 +20,8 @@ export default {
     }
   },
   // 2) Dichiarazione del componente
-  component: {
-
+  components: {
+    SingleItem
   },
   methods: {
     search() {
@@ -51,19 +52,6 @@ export default {
 
           this.series = resp.data.results;
         });
-    },
-    getFlag(lang) {
-      const validLang = {
-        en: 'en.gif',
-        it: 'it.gif',
-        ja: 'jp.gif',
-      };
-
-      if (lang in validLang) {
-        return '/img/flags/' + validLang[lang];
-      } else {
-        return '/img/flags/other-img.webp';
-      }
     }
   }
 }
@@ -95,21 +83,14 @@ export default {
     </h2>
     <ol>
       <li v-for="(movie ,i) in movies" :key="i">
-        <ul>
-          <li>
-            Titolo: {{ movie.title }}
-          </li>
-          <li>
-            Titolo Originale: {{ movie.original_title }}
-          </li>
-          <li>
-            Lingua: <img :src="getFlag(movie.original_language)" alt="">
-          </li>
-          <li>
-            Voto: {{ movie.vote_average }}
-          </li>
-        </ul>
 
+        <SingleItem
+          :title="movie.title"
+          :originalTitle="movie.original_title"
+          :language="movie.original_language"
+          :vote="movie.vote_average"
+          />
+          
         <hr>
 
       </li>
@@ -124,20 +105,13 @@ export default {
     </h2>
     <ol>
       <li v-for="(series ,i) in series" :key="i">
-        <ul>
-          <li>
-            Titolo: {{ series.name }}
-          </li>
-          <li>
-            Titolo Originale: {{ series.original_title }}
-          </li>
-          <li>
-            Lingua: <img :src="getFlag(series.original_language)" alt="">
-          </li>
-          <li>
-            Voto: {{ series.vote_average }}
-          </li>
-        </ul>
+
+        <SingleItem
+          :title="series.name"
+          :originalTitle="series.original_title"
+          :language="series.original_language"
+          :vote="series.vote_average"
+          />
 
         <hr>
 
