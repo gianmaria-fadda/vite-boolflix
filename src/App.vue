@@ -6,36 +6,43 @@
   3) Utilizzo del componente
 */
 // 1) Importazione del componente
-import AppHeader from './components/AppHeader.vue';
 
 export default {
   data() {
-    return { 
-      count: 0
+    return {
     }
   },
   // 2) Dichiarazione del componente
-  components: {
-    AppHeader
+  component: {
+
   },
   methods: {
-    incrementCount() {
-      this.count++;
+    search() {
+      console.log(this.searchText);
+      
     }
   }
 }
 </script>
 
 <template>
-  <div>
     <!-- 3) Utilizzo del componente -->
-    <AppHeader />
-    
-    <main>
-      <button class="btn btn-primary" @click="incrementCount()">
-        {{ count }}
+    <div class="d-flex justify-content-between">
+    <div>
+      <form @submit.prevent="search">
+        <input type="text" placeholder="Cerca film o serie TV...">
+        <button type="submit">
+          Cerca
+        </button>
+      </form>
+    </div>
+
+    <div>
+      <input type="text" placeholder="Cerca film o serie TV...">
+      <button @click="search">
+          Cerca
       </button>
-    </main>
+    </div>
   </div>
 </template>
 
