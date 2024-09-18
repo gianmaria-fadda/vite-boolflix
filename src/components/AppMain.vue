@@ -64,6 +64,12 @@ export default {
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
+@use '../assets/scss/partials/mixins.scss' as *;
+
+div {
+  
+  @include bg-color-grey;
+}
 
 </style>
